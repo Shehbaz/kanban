@@ -49,14 +49,13 @@ Kanban.Views.BoardShow = Backbone.View.extend({
 
     // save list
     list.save(attrs.list, {
-      success: function (data) {
-        lists.add(list);
-
+      success: function (data, response) {
+        lists.add(response.list);
         // animate list insertion
         setTimeout(function () {
-          $('#list_' + list.id).removeClass('animated flipInY');
+          $('#list_' + response.list.id).removeClass('animated flipInY');
         }, 650);
-        $('#list_' + list.id).addClass('animated flipInY');
+        $('#list_' + response.list.id).addClass('animated flipInY');
 
         // keep focus on list input
         $('div.add_list input.list_title').focus();

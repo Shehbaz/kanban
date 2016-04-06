@@ -81,20 +81,20 @@ Kanban.Views.ListShow = Backbone.View.extend({
 
     // save card
     card.save(attrs.card, {
-      success: function (data) {
+      success: function (data, response) {
         var list_id = list.id;
 
         // add card to collection
-        cards.add(card);
+        cards.add(response.card);
 
         console.log('card post-save');
-        console.log(card);
+        console.log(response.card);
 
         // animate card insertion
         setTimeout(function () {
-          $('#card_' + card.id).removeClass('animated flipInX');
+          $('#card_' + response.card.id).removeClass('animated flipInX');
         }, 450);
-        $('#card_' + card.id).addClass('animated flipInX');
+        $('#card_' + response.card.id).addClass('animated flipInX');
 
         // restore scroll position, re-focus on card input
         $('div.lists').scrollLeft($scrollPos);
