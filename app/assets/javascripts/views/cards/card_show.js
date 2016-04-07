@@ -46,9 +46,8 @@ Kanban.Views.CardShow = Backbone.View.extend({
 
     var cardComment = new Kanban.Models.CardComment();
     cardComment.save(attrs.card_comment, {
-      success: function (response) {
-        comments.add(cardComment, { at: 0 });
-
+      success: function (response,resp) {
+        comments.add(resp.card_comment, { at: 0 });
         var card = comments.card;
         var comments_count = +card.get('comments_count');
         card.set({ comments_count: comments_count + 1 });
