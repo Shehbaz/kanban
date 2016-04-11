@@ -15,7 +15,7 @@ Kanban.Views.ListShow = Backbone.View.extend({
   events: {
     'click div.card': 'cardClick',
     'submit form.add_card': 'addCard',
-    'click button.archive_card': 'archiveCard',
+    'click button.archive_card': 'archiveCard'
   },
 
   cardClick: function (event) {
@@ -25,9 +25,9 @@ Kanban.Views.ListShow = Backbone.View.extend({
     var cardId = parseInt($(event.target).data('card-id'));
     var $cardModal = $('section.card_detail');
     var list = that.model;
+
     var cards = list.get('cards');
     var card = cards.get(cardId);
-
     card.fetch({
       success: function (card) {
         var cardShow = new Kanban.Views.CardShow({
@@ -127,7 +127,7 @@ Kanban.Views.ListShow = Backbone.View.extend({
 
     var list = that.model;
     var list_id = list.get('id');
-    // console.log('render list ' + list_id);
+    console.log('render list ' + list_id);
 
     // list show
     that.$el.attr('id', 'list_' + list_id);
@@ -154,9 +154,10 @@ Kanban.Views.ListShow = Backbone.View.extend({
     });
 
     // sortable for cards
-    sortCardsUrl = '/api/cards/sort'
+    sortCardsUrl = '/api/cards/sort';
     var $cards = that.$('div.cards');
     $cards.sortable({
+
       items: 'div.card',
       connectWith: '.cards',
       delay: 125,
@@ -175,21 +176,20 @@ Kanban.Views.ListShow = Backbone.View.extend({
           // add list_id to sortData
           var listId = parseInt($(this).data('listId'));
           sortData += '&list_id=' + listId;
-
           // console.log('listId:')
           // console.log(listId);
 
           $.post(sortCardsUrl, sortData, function (resortedCards) {
+
             var cards = list.get('cards');
             cards.reset(resortedCards.cards);
 
-            // console.log('cards post-sort');
+//            console.log('cards post-sort');
             // console.log(cards);
           });
-        };
+        }
       }
     });
-
     return that;
   }
 });
