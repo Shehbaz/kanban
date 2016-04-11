@@ -91,7 +91,7 @@ Kanban.Views.CardShow = Backbone.View.extend({
 
     // decorate comment timestamps
     that.$el.find('abbr.timeago').timeago();
-
+      console.log("333333333333333333333333333333333333");
     return that;
   }
 });

@@ -53,10 +53,9 @@ Kanban.Views.BoardsIndex = Backbone.View.extend({
 
     // save list
     board.save(attrs.board, {
-      success: function (data) {
+      success: function (data,response) {
         board.get('users').add(Kanban.currentUser);
-        that.collection.add(board);
-
+          that.collection.add(response.board);
         // keep focus on list input
         that.$el.find('input.board_name').focus();
       }
