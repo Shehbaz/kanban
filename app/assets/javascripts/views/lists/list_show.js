@@ -24,7 +24,6 @@ Kanban.Views.ListShow = Backbone.View.extend({
 
     var cardId = parseInt($(event.target).data('card-id'));
     var $cardModal = $('section.card_detail');
-
     var list = that.model;
     var cards = list.get('cards');
     var card = cards.get(cardId);
@@ -89,7 +88,7 @@ Kanban.Views.ListShow = Backbone.View.extend({
 
         console.log('card post-save');
         console.log(response.card);
-
+//        var card_id = card.changedAttributes().card.id
         // animate card insertion
         setTimeout(function () {
           $('#card_' + response.card.id).removeClass('animated flipInX');
