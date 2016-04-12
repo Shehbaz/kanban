@@ -1,29 +1,36 @@
-<header class="boards-index">
+<header class="">
   <h2>My Boards</h2>
 </header>
 
-<ul class="boards-list">
+<div class='row'>
   <% boards.each(function (board) { %>
-    <li>
-      <a href="/#boards/<%= board.id %>">
-        <%= board.escape('name') %>
-      </a>
-    </li>
+    <a href="/#boards/<%= board.id %>">
+        <div class="col-lg-3 board_list">
+            <%= board.escape('name') %>
+        </div>
+   </a>
   <% }); %>
-</ul>
 
-<h3>Create New Board</h3>
+<a href="/#boards/new">
+    <div class="col-lg-3 board_list">
+        <h6>Create New Board</h6>
+    </div>
+</div>
 
-<div class="create_board">
-  <form class="create_board">
-    <input type="text"
-           class="board_name"
-           name="board[name]"
-           placeholder="Board Name ..." />
-    <input type="text"
-           class="board_description"
-           name="board[description]"
-           placeholder="Board Description ..." />
-    <input type="submit" value="Create Board" />
-  </form>
+<div class="col-lg-3 board_list">
+    <h6>Create New Board</h6>
+    <div class="create_board">
+      <form class="create_board">
+        <input type="text"
+               class="board_name"
+               name="board[name]"
+               placeholder="Board Name ..." />
+        <input type="text"
+               class="board_description"
+               name="board[description]"
+               placeholder="Board Description ..." />
+        <input type="submit" value="Create Board" />
+      </form>
+    </div>
+ </div>
 </div>

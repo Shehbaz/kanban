@@ -10,21 +10,48 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <div id="wrapper">
-  <div id="header">
-    <div class="header-logo">
-      <h1><a href="/">Ticketing System</a></h1>
-    </div>
-    <div class="header-user">
-      <% if logged_in? %>
-        <%= link_to image_tag(current_user.gravatar_url(30), class: "avatar"), "#" %>
-        <p>(<%= link_to "logout", logout_url %>)</p>
-      <% else %>
-        <p><%= link_to "login", login_url %></p>
-      <% end %>
-    </div>
-  </div>
+
+  <% if logged_in? %>
+      <nav class="navbar navbar-default ticket_nav_bar">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">Ticketing System</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="menu nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boards <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <% @boards.each do |board| %>
+                      <li>
+                        <a href="/#boards/<%= board.id %>">
+                          <%= board.name %>
+                        </a>
+                      </li>
+                  <% end %>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <input class="form-control" placeholder="Search" type="text">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <% if logged_in? %>
+                  <%= link_to image_tag(current_user.gravatar_url(30), class: "avatar"), "#" %>
+                  <li><%= link_to "logout", logout_url %></li>
+              <% else %>
+                  <li><%= link_to "login", login_url %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+  <% end %>
 
   <div id="main clearfix">
     <%= yield %>
