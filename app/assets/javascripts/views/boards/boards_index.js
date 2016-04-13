@@ -28,6 +28,7 @@ Kanban.Views.BoardsIndex = Backbone.View.extend({
         event.stopPropagation();
         var that = this;
         var $newBoardModal = $('section.new_board');
+        $('#new_board_create').modal();
 
         console.log('board new modal');
     },
@@ -63,6 +64,7 @@ Kanban.Views.BoardsIndex = Backbone.View.extend({
     // save list
     board.save(attrs.board, {
       success: function (data,response) {
+        $.modal.close();
         board.get('users').add(Kanban.currentUser);
           that.collection.add(response.board);
         // keep focus on list input
