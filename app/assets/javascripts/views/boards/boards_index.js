@@ -4,6 +4,7 @@ Kanban.Views.BoardsIndex = Backbone.View.extend({
   className: 'boards-index',
 
   events: {
+    'click div.newBoard': 'newBoard',
     'submit form.create_board': 'createBoard'
   },
 
@@ -22,6 +23,14 @@ Kanban.Views.BoardsIndex = Backbone.View.extend({
     that.$el.html(renderedContent);
     return that;
   },
+
+    newBoard: function (event) {
+        event.stopPropagation();
+        var that = this;
+        var $newBoardModal = $('section.new_board');
+
+        console.log('board new modal');
+    },
 
   createBoard: function (event) {
     event.preventDefault();
